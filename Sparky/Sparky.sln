@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sparky", "Sparky\Sparky.csproj", "{A87AA1D7-F209-4FFF-AFAE-3DD36B81EC56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SparkyMSTest", "SparkyMSTest\SparkyMSTest.csproj", "{87B8AB5E-1051-4B5A-B92E-0469B4AB356B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A87AA1D7-F209-4FFF-AFAE-3DD36B81EC56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A87AA1D7-F209-4FFF-AFAE-3DD36B81EC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A87AA1D7-F209-4FFF-AFAE-3DD36B81EC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A87AA1D7-F209-4FFF-AFAE-3DD36B81EC56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B8AB5E-1051-4B5A-B92E-0469B4AB356B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B8AB5E-1051-4B5A-B92E-0469B4AB356B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B8AB5E-1051-4B5A-B92E-0469B4AB356B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B8AB5E-1051-4B5A-B92E-0469B4AB356B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
