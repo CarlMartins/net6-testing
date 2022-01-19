@@ -6,4 +6,9 @@ public class Calculator
     {
         return a + b;
     }
+
+    public bool IsOddNumber(int a)
+    {
+        return a % 2 != 0;
+    }
 }
