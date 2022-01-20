@@ -19,13 +19,15 @@ public class CalculatorNUnitTests
     }
 
     [Test]
-    public void IsOddNumber_InputOddNumber_ReturnFalse()
+    [TestCase(11)]
+    [TestCase(13)]
+    public void IsOddNumber_InputOddNumber_ReturnTrue(int a)
     {
         // Arrange
         Calculator calculator = new();
 
         // Act
-        bool result = calculator.IsOddNumber(3);
+        bool result = calculator.IsOddNumber(a);
 
         // Assert
         Assert.That(result, Is.EqualTo(true));
