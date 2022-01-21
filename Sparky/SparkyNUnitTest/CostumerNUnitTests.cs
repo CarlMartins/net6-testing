@@ -10,13 +10,21 @@ public class CostumerNUnitTests
     {
         var costumer = new Costumer();
 
-        string fullName = costumer.GreetAndCombineNames("Carlos", "Martins");
+        costumer.GreetAndCombineNames("Carlos", "Martins");
         
-        Assert.AreEqual("Hello, Carlos Martins!", fullName);
-        Assert.That(fullName, Is.EqualTo("Hello, Carlos Martins!"));
-        Assert.That(fullName, Does.Contain(","));
-        Assert.That(fullName, Does.StartWith("Hello"));
-        Assert.That(fullName, Does.EndWith("!"));
-        Assert.That(fullName, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
+        Assert.AreEqual("Hello, Carlos Martins!", costumer.GreetMessage);
+        Assert.That(costumer.GreetMessage, Is.EqualTo("Hello, Carlos Martins!"));
+        Assert.That(costumer.GreetMessage, Does.Contain(","));
+        Assert.That(costumer.GreetMessage, Does.StartWith("Hello"));
+        Assert.That(costumer.GreetMessage, Does.EndWith("!"));
+        Assert.That(costumer.GreetMessage, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
+    }
+
+    [Test]
+    public void GreetMessage_NotGreeted_ReturnsNull()
+    {
+        var costumer = new Costumer();
+        
+        Assert.IsNull(costumer.GreetMessage);
     }
 }

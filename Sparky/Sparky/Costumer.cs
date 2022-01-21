@@ -2,8 +2,11 @@ namespace Sparky;
 
 public class Costumer
 {
+    public string GreetMessage { get; set; }
+    
     public string GreetAndCombineNames(string firstName, string lastName)
     {
-        return $"Hello, {firstName} {lastName}!";
+        GreetMessage = $"Hello, {firstName} {lastName}!";
+        return GreetMessage;
     }
 }
