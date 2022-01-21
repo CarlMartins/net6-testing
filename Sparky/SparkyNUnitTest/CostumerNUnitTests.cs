@@ -12,6 +12,11 @@ public class CostumerNUnitTests
 
         string fullName = costumer.GreetAndCombineNames("Carlos", "Martins");
         
+        Assert.AreEqual("Hello, Carlos Martins!", fullName);
         Assert.That(fullName, Is.EqualTo("Hello, Carlos Martins!"));
+        Assert.That(fullName, Does.Contain(","));
+        Assert.That(fullName, Does.StartWith("Hello"));
+        Assert.That(fullName, Does.EndWith("!"));
+        Assert.That(fullName, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
     }
 }
