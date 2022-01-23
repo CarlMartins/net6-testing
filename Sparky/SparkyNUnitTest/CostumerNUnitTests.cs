@@ -33,4 +33,12 @@ public class CostumerNUnitTests
         
         Assert.IsNull(costumer.GreetMessage);
     }
+
+    [Test]
+    public void DiscountCheck_DefaultCostumer_ReturnsDiscountInRange()
+    {
+        int result = _costumer.Discount;
+        
+        Assert.That(result, Is.InRange(10, 25));
+    }
 }
