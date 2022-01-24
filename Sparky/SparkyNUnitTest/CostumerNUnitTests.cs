@@ -63,5 +63,8 @@ public class CostumerNUnitTests
         Assert.AreEqual("Empty first name", exceptionDetails.Message);
         Assert.That(() => _costumer
             .GreetAndCombineNames("", "Spark"), Throws.ArgumentException.With.Message.EqualTo("Empty first name"));
+
+        Assert.Throws<ArgumentException>(() => _costumer.GreetAndCombineNames("", "Spark"));
+        Assert.That(() => _costumer.GreetAndCombineNames("", "Spark"), Throws.ArgumentException);
     }
 }
