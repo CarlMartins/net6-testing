@@ -44,4 +44,24 @@ public class CostumerNUnitTests
         
         Assert.That(result, Is.InRange(10, 25));
     }
+
+    [Test]
+    public void GreetMessage_GreetedWithouLastName_ReturnsNotNull()
+    {
+        _costumer.GreetAndCombineNames("Ben", "");
+        
+        Assert.IsNotNull(_costumer.GreetMessage);
+        Assert.IsFalse(string.IsNullOrEmpty(_costumer.GreetMessage));
+    }
+    
+    [Test]
+    public void GreetChecker_EmptyFirstName_ThrowsException()
+    {
+        var exceptionDetails = Assert
+            .Throws<ArgumentException>(() => _costumer.GreetAndCombineNames("", "Spark"));
+        
+        Assert.AreEqual("Empty first name", exceptionDetails.Message);
+        Assert.That(() => _costumer
+            .GreetAndCombineNames("", "Spark"), Throws.ArgumentException.With.Message.EqualTo("Empty first name"));
+    }
 }
