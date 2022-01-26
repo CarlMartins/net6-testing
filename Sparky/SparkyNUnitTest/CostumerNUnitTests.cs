@@ -67,4 +67,13 @@ public class CostumerNUnitTests
         Assert.Throws<ArgumentException>(() => _costumer.GreetAndCombineNames("", "Spark"));
         Assert.That(() => _costumer.GreetAndCombineNames("", "Spark"), Throws.ArgumentException);
     }
+
+    [Test]
+    public void CostumerType_CreateCostumerWithLessThan100Order_ReturnBasicCostumer()
+    {
+        _costumer.OrderTotal = 10;
+        var result = _costumer.GetCustomerDetails();
+        
+        Assert.That(result, Is.TypeOf<BasicCostumer>());
+    }
 }
