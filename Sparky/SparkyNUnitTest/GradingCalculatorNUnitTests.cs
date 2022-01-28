@@ -5,9 +5,10 @@ namespace Sparky;
 [TestFixture]
 public class GradingCalculatorNUnitTests
 {
-    private readonly GradingCalculator _calculator;
+    private GradingCalculator _calculator;
 
-    public GradingCalculatorNUnitTests()
+    [SetUp]
+    public void Setup()
     {
         _calculator = new GradingCalculator();
     }
@@ -68,7 +69,7 @@ public class GradingCalculatorNUnitTests
     [TestCase(95, 55)]
     [TestCase(65, 55)]
     [TestCase(50, 90)]
-    public void GetGrade_MultipleValues_ShouldReturnF(int score, int attendancePercentage)
+    public void GetGrade_FalingScenarios_ShouldReturnF(int score, int attendancePercentage)
     {
         _calculator.Score = score;
         _calculator.AttendancePercentage = attendancePercentage;
@@ -78,5 +79,21 @@ public class GradingCalculatorNUnitTests
         Assert.That(result, Is.EqualTo("F"));
         Assert.AreEqual("F", result);
         Assert.That(result, Is.TypeOf<string>());
+    }
+    
+    [Test]
+    [TestCase(95, 90, ExpectedResult = "A")]
+    [TestCase(85, 90, ExpectedResult = "B")]
+    [TestCase(65, 90, ExpectedResult = "C")]
+    [TestCase(95, 65, ExpectedResult = "B")]
+    [TestCase(95, 55, ExpectedResult = "F")]
+    [TestCase(65, 55, ExpectedResult = "F")]
+    [TestCase(50, 90, ExpectedResult = "F")]
+    public string GetGrade_AllGradeLogicalScenarios_GradeOutput(int score, int attendancePercentage)
+    {
+        _calculator.Score = score;
+        _calculator.AttendancePercentage = attendancePercentage;
+
+       return _calculator.GetGrade();
     }
 }
