@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 course_20.zip
+/course_20
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
