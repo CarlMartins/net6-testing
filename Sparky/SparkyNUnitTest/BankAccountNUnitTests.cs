@@ -15,16 +15,6 @@ public class BankAccountNUnitTests
     }
 
     [Test]
-    public void BankDepositLogFakker_Add100_ShouldReturnTrue()
-    {
-        _bankAccount = new (new LogFakker());
-        var result = _bankAccount.Deposit(100);
-        
-        Assert.IsTrue(result);
-        Assert.That(_bankAccount.Balance, Is.EqualTo(100));
-    }
-
-    [Test]
     public void BankDeposit_Add100_ShouldReturnTrue()
     {
         var logMock = new Mock<ILogBook>();
