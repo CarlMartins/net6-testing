@@ -110,5 +110,26 @@ public class BankAccountNUnitTests
         
         Assert.That(logMock.Object.LogSeverity, Is.EqualTo(100));
         Assert.That(logMock.Object.LogType, Is.EqualTo("Warning"));
+        
+        // Callbacks
+        string logTemp = "Hello, ";
+        logMock.Setup(u => u.LogToDb(It.IsAny<string>()))
+            .Returns(true)
+            .Callback((string str) => logTemp += str);
+
+        logMock.Object.LogToDb("Carlos");
+        
+        Assert.That(logTemp, Is.EqualTo("Hello, Carlos"));
+        
+        
+        // Callbacks
+        int counter = 5;
+        logMock.Setup(u => u.LogToDb(It.IsAny<string>()))
+            .Returns(true)
+            .Callback(() => counter++);
+
+        logMock.Object.LogToDb("Carlos");
+        
+        Assert.That(counter, Is.EqualTo(6));
     }
 }
