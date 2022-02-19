@@ -132,4 +132,21 @@ public class BankAccountNUnitTests
         
         Assert.That(counter, Is.EqualTo(6));
     }
+
+    [Test]
+    public void BankLogDummy_VerifyExample()
+    {
+        var logMock = new Mock<ILogBook>();
+        BankAccount bankAccount = new(logMock.Object);
+
+        bankAccount.Deposit(100);
+
+        Assert.That(bankAccount.Balance, Is.EqualTo(100));
+        
+        // Verification
+        logMock.Verify(u => u.Message(It.IsAny<string>()), Times.Exactly(2));
+        logMock.Verify(u => u.Message("Test"), Times.AtLeastOnce);
+        logMock.VerifySet(u => u.LogSeverity = 101, Times.Once);
+        logMock.VerifyGet(u => u.LogSeverity, Times.Once);
+    }
 }
