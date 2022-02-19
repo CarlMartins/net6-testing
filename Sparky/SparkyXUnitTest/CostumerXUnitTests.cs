@@ -1,79 +1,71 @@
-// using NUnit.Framework;
-//
-// namespace Sparky;
-//
-// [TestFixture]
-// public class CostumerXUnitTests
-// {
-//     private Customer _customer;
-//     
-//     [SetUp]
-//     public void Setup()
-//     {
-//         _customer = new Customer();
-//     }
-//     
-//     [Test]
-//     public void CombineName_InputFirstAndLastName_ReturnFullName()
-//     {
-//         _customer.GreetAndCombineNames("Carlos", "Martins");
-//         
-//         Assert.Multiple(() =>
-//         {
-//             Assert.AreEqual("Hello, Carlos Martins!", _customer.GreetMessage);
-//             Assert.That(_customer.GreetMessage, Is.EqualTo("Hello, Carlos Martins!"));
-//             Assert.That(_customer.GreetMessage, Does.Contain(","));
-//             Assert.That(_customer.GreetMessage, Does.StartWith("Hello"));
-//             Assert.That(_customer.GreetMessage, Does.EndWith("!"));
-//             Assert.That(_customer.GreetMessage, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
-//         });
-//     }
-//
-//     [Test]
-//     public void GreetMessage_NotGreeted_ReturnsNull()
-//     {
-//         var costumer = new Customer();
-//         
-//         Assert.IsNull(costumer.GreetMessage);
-//     }
-//
-//     [Test]
-//     public void DiscountCheck_DefaultCostumer_ReturnsDiscountInRange()
-//     {
-//         int result = _customer.Discount;
-//         
-//         Assert.That(result, Is.InRange(10, 25));
-//     }
-//
-//     [Test]
-//     public void GreetMessage_GreetedWithouLastName_ReturnsNotNull()
-//     {
-//         _customer.GreetAndCombineNames("Ben", "");
-//         
-//         Assert.IsNotNull(_customer.GreetMessage);
-//         Assert.IsFalse(string.IsNullOrEmpty(_customer.GreetMessage));
-//     }
-//     
-//     [Test]
-//     public void GreetChecker_EmptyFirstName_ThrowsException()
-//     {
-//         var exceptionDetails = Assert
-//             .Throws<ArgumentException>(() => _customer.GreetAndCombineNames("", "Spark"));
-//         
-//         Assert.AreEqual("Empty first name", exceptionDetails.Message);
-//         Assert.That(() => _customer
-//             .GreetAndCombineNames("", "Spark"), Throws.ArgumentException.With.Message.EqualTo("Empty first name"));
-//
-//         Assert.Throws<ArgumentException>(() => _customer.GreetAndCombineNames("", "Spark"));
-//         Assert.That(() => _customer.GreetAndCombineNames("", "Spark"), Throws.ArgumentException);
-//     }
-//
-//     [Test]
-//     public void CostumerType_CreateCostumerWithLessThan100Order_ReturnBasicCostumer()
-//     {
-//         _customer.OrderTotal = 10;
-//         var result = _customer.GetCustomerDetails();
-//         
-//         Assert.That(result, Is.TypeOf<BasicCostumer>());
-//     }
-// }
+using Castle.Core.Internal;
+using Xunit;
+
+namespace Sparky;
+
+public class CostumerXUnitTests
+{
+    private Customer _customer;
+    
+    public CostumerXUnitTests()
+    {
+        _customer = new Customer();
+    }
+    
+    [Fact]
+    public void CombineName_InputFirstAndLastName_ReturnFullName()
+    {
+        _customer.GreetAndCombineNames("Carlos", "Martins");
+        
+
+        Assert.Equal("Hello, Carlos Martins!", _customer.GreetMessage);
+        Assert.Contains(",",_customer.GreetMessage);
+        Assert.StartsWith("Hello",_customer.GreetMessage);
+        Assert.EndsWith("!",_customer.GreetMessage);
+        Assert.Matches("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+",_customer.GreetMessage);
+    }
+
+    [Fact]
+    public void GreetMessage_NotGreeted_ReturnsNull()
+    {
+        var costumer = new Customer();
+        
+        Assert.Null(costumer.GreetMessage);
+    }
+
+    [Fact]
+    public void DiscountCheck_DefaultCostumer_ReturnsDiscountInRange()
+    {
+        int result = _customer.Discount;
+        
+        Assert.InRange(result, 10, 25);
+    }
+
+    [Fact]
+    public void GreetMessage_GreetedWithouLastName_ReturnsNotNull()
+    {
+        _customer.GreetAndCombineNames("Ben", "");
+        
+        Assert.NotNull(_customer.GreetMessage);
+        Assert.False(string.IsNullOrEmpty(_customer.GreetMessage));
+    }
+    
+    [Fact]
+    public void GreetChecker_EmptyFirstName_ThrowsException()
+    {
+        var exceptionDetails = Assert
+            .Throws<ArgumentException>(() => _customer.GreetAndCombineNames("", "Spark"));
+        
+        Assert.Equal("Empty first name", exceptionDetails.Message);
+        Assert.Throws<ArgumentException>(() => _customer.GreetAndCombineNames("", "Spark"));
+    }
+
+    [Fact]
+    public void CostumerType_CreateCostumerWithLessThan100Order_ReturnBasicCostumer()
+    {
+        _customer.OrderTotal = 10;
+        var result = _customer.GetCustomerDetails();
+        
+        Assert.IsType<BasicCostumer>(result);
+    }
+}
