@@ -62,8 +62,25 @@ public class BankAccountNUnitTests
         var logMock = new Mock<ILogBook>();
         string desiredOutput = "Hello";
         
-        logMock.Setup(u => u.MessageWithReturnStr(It.IsAny<string>())).Returns((string str) => str);
+        logMock.Setup(u => u.MessageWithReturnStr(It.IsAny<string>()))
+            .Returns((string str) => str);
 
         Assert.That(logMock.Object.MessageWithReturnStr("Hello"), Is.EqualTo(desiredOutput));
+    }
+    
+    [Test]
+    public void BankLogDummy_LogMockStringOutputStr_ReturnTrue()
+    {
+        var logMock = new Mock<ILogBook>();
+        string desiredOutput = "Hello";
+        
+        logMock.Setup(u => 
+                u.LogWithOutputResult(It.IsAny<string>(), out desiredOutput))
+                    .Returns(true);
+
+        string result = "";
+
+        Assert.IsTrue(logMock.Object.LogWithOutputResult("Ben", out result));
+        Assert.That(result, Is.EqualTo(desiredOutput));
     }
 }

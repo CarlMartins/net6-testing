@@ -6,6 +6,7 @@ public interface ILogBook
     bool LogToDb(string message);
     bool LogBalanceAfterWithdrawal(int balanceAfterWithdrawal);
     string MessageWithReturnStr(string message);
+    bool LogWithOutputResult(string str, out string outputStr);
 }
 
 public class LogBook : ILogBook
@@ -37,5 +38,11 @@ public class LogBook : ILogBook
     {
         Console.WriteLine(message);
         return message;
+    }
+
+    public bool LogWithOutputResult(string str, out string outputStr)
+    {
+        outputStr = "Hello " + str;
+        return true;
     }
 }
