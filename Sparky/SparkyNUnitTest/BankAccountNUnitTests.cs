@@ -55,4 +55,15 @@ public class BankAccountNUnitTests
         var result = bankAccount.Withdraw(withdraw);
         Assert.IsFalse(result);
     }
+    
+    [Test]
+    public void BankLogDummy_LogMockString_ReturnTrue()
+    {
+        var logMock = new Mock<ILogBook>();
+        string desiredOutput = "Hello";
+        
+        logMock.Setup(u => u.MessageWithReturnStr(It.IsAny<string>())).Returns((string str) => str);
+
+        Assert.That(logMock.Object.MessageWithReturnStr("Hello"), Is.EqualTo(desiredOutput));
+    }
 }

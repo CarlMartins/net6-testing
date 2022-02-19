@@ -5,6 +5,7 @@ public interface ILogBook
     void Message(string message);
     bool LogToDb(string message);
     bool LogBalanceAfterWithdrawal(int balanceAfterWithdrawal);
+    string MessageWithReturnStr(string message);
 }
 
 public class LogBook : ILogBook
@@ -30,5 +31,11 @@ public class LogBook : ILogBook
         
         Console.WriteLine("Failure");
         return false;
+    }
+
+    public string MessageWithReturnStr(string message)
+    {
+        Console.WriteLine(message);
+        return message;
     }
 }
