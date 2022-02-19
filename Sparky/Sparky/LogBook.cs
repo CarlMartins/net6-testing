@@ -7,6 +7,7 @@ public interface ILogBook
     bool LogBalanceAfterWithdrawal(int balanceAfterWithdrawal);
     string MessageWithReturnStr(string message);
     bool LogWithOutputResult(string str, out string outputStr);
+    bool LogWithRefObj(ref Customer customer);
 }
 
 public class LogBook : ILogBook
@@ -43,6 +44,11 @@ public class LogBook : ILogBook
     public bool LogWithOutputResult(string str, out string outputStr)
     {
         outputStr = "Hello " + str;
+        return true;
+    }
+
+    public bool LogWithRefObj(ref Customer customer)
+    {
         return true;
     }
 }
