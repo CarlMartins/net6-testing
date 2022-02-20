@@ -20,7 +20,6 @@ namespace Bongo.Web.Controllers
         public IActionResult Index()
         {
             return View(_studyRoomBookingService.GetAllBooking());
-
         }
         public IActionResult Book()
         {

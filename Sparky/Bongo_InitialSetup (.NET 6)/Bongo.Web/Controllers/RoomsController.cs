@@ -19,7 +19,5 @@ namespace Bongo.Web.Controllers
         {
             return View(_studyRoomService.GetAll());
         }
-
-       
     }
 }

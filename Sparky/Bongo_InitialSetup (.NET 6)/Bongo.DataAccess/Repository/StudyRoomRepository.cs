@@ -16,13 +16,10 @@ namespace Bongo.DataAccess.Repository
         {
             _db = db;
         }
-      
-    
+        
         public IEnumerable<StudyRoom> GetAll()
         {
             return  _db.StudyRooms.ToList();
         }
-
-
     }
 }

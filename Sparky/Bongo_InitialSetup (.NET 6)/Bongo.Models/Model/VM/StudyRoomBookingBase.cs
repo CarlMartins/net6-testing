@@ -26,7 +26,5 @@ namespace Bongo.Models.Model.VM
         [DataType(DataType.Date)]
         [DateInFuture]
         public DateTime Date { get; set; }
-
-        
     }
 }

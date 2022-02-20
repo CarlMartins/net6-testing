@@ -16,13 +16,10 @@ namespace Bongo.Core.Services
         {
             _studyRoomRepository = studyRoomRepository;
         }
-
-
+        
         public IEnumerable<StudyRoom> GetAll()
         {
             return _studyRoomRepository.GetAll();
         }
-
-      
     }
 }
