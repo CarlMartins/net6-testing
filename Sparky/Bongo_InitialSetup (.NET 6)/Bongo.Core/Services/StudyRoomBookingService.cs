@@ -65,8 +65,5 @@ namespace Bongo.Core.Services
         {
             return _studyRoomBookingRepository.GetAll(null);
         }
-
-    
     }
-
 }
